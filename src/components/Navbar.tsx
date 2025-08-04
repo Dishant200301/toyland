@@ -2,17 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Heart, Search, Menu, User } from "lucide-react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import mascotImage from "@/assets/mascot-cloud.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3">
             <img 
               src={mascotImage} 
               alt="ToyLand Mascot" 
@@ -21,25 +23,25 @@ const Navbar = () => {
             <h1 className="text-2xl font-bold text-primary font-playful">
               ToyLand
             </h1>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-foreground hover:text-primary transition-colors font-medium">
+            <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium">
               Home
-            </a>
-            <a href="#shop" className="text-foreground hover:text-primary transition-colors font-medium">
+            </Link>
+            <Link to="/shop" className="text-foreground hover:text-primary transition-colors font-medium">
               Shop
-            </a>
-            <a href="#categories" className="text-foreground hover:text-primary transition-colors font-medium">
-              Categories
-            </a>
-            <a href="#about" className="text-foreground hover:text-primary transition-colors font-medium">
+            </Link>
+            <Link to="/about" className="text-foreground hover:text-primary transition-colors font-medium">
               About
-            </a>
-            <a href="#blog" className="text-foreground hover:text-primary transition-colors font-medium">
+            </Link>
+            <Link to="/blog" className="text-foreground hover:text-primary transition-colors font-medium">
               Blog
-            </a>
+            </Link>
+            <Link to="/contact" className="text-foreground hover:text-primary transition-colors font-medium">
+              Contact
+            </Link>
           </div>
 
           {/* Actions */}
@@ -58,7 +60,12 @@ const Navbar = () => {
               </Badge>
             </Button>
             
-            <Button variant="ghost" size="icon" className="relative">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative"
+              onClick={() => navigate('/cart')}
+            >
               <ShoppingCart className="h-5 w-5" />
               <Badge 
                 variant="secondary" 
@@ -88,21 +95,21 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border animate-scale-in">
             <div className="flex flex-col space-y-3">
-              <a href="#" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+              <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium py-2">
                 Home
-              </a>
-              <a href="#shop" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+              </Link>
+              <Link to="/shop" className="text-foreground hover:text-primary transition-colors font-medium py-2">
                 Shop
-              </a>
-              <a href="#categories" className="text-foreground hover:text-primary transition-colors font-medium py-2">
-                Categories
-              </a>
-              <a href="#about" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+              </Link>
+              <Link to="/about" className="text-foreground hover:text-primary transition-colors font-medium py-2">
                 About
-              </a>
-              <a href="#blog" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+              </Link>
+              <Link to="/blog" className="text-foreground hover:text-primary transition-colors font-medium py-2">
                 Blog
-              </a>
+              </Link>
+              <Link to="/contact" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+                Contact
+              </Link>
               <div className="pt-3 border-t border-border">
                 <Button variant="outline" className="w-full">
                   <User className="h-4 w-4 mr-2" />

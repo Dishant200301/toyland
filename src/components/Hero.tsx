@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Star, Heart, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-kids-playing.jpg";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-background via-muted to-secondary py-16 md:py-24">
       {/* Floating elements */}
@@ -40,12 +42,12 @@ const Hero = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button variant="hero" className="group">
+              <Button variant="hero" className="group" onClick={() => navigate('/shop')}>
                 Start Shopping
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               
-              <Button variant="outline" size="lg" className="font-semibold">
+              <Button variant="outline" size="lg" className="font-semibold" onClick={() => navigate('/shop')}>
                 View Categories
               </Button>
             </div>

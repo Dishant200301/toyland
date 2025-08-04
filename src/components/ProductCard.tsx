@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, ShoppingCart, Star, Eye } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   id: string;
@@ -18,6 +19,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ 
+  id,
   name, 
   price, 
   originalPrice, 
@@ -30,12 +32,14 @@ const ProductCard = ({
 }: ProductCardProps) => {
   const [wishlistState, setWishlistState] = useState(isWishlisted);
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <Card 
-      className="group overflow-hidden border-0 soft-shadow hover:playful-shadow transition-all duration-300 bounce-hover"
+      className="group overflow-hidden border-0 soft-shadow hover:playful-shadow transition-all duration-300 bounce-hover cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => navigate(`/product/${id}`)}
     >
       <div className="relative overflow-hidden">
         <img 
@@ -74,6 +78,10 @@ const ProductCard = ({
             variant="secondary" 
             size="icon" 
             className="h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/product/${id}`);
+            }}
           >
             <Eye className="h-4 w-4 text-muted-foreground" />
           </Button>
@@ -122,6 +130,7 @@ const ProductCard = ({
           variant="playful" 
           className="w-full group-hover:animate-bounce-gentle"
           size="sm"
+          onClick={(e) => e.stopPropagation()}
         >
           <ShoppingCart className="h-4 w-4 mr-2" />
           Add to Cart
