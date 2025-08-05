@@ -1,27 +1,42 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import React from 'react';
+import { useCart } from './hooks/useCart.js';
+import { useWishlist } from './hooks/useWishlist.js';
+import Navigation from './components/layout/Navigation.js';
+import HomePage from './pages/HomePage.js';
+import ShopPage from './pages/ShopPage.js';
+import CategoriesPage from './pages/CategoriesPage.js';
+import AboutPage from './pages/AboutPage.js';
+import BlogPage from './pages/BlogPage.js';
+import ContactPage from './pages/ContactPage.js';
+import FAQPage from './pages/FAQPage.js';
+import Footer from './components/layout/Footer.js';
 
-const queryClient = new QueryClient();
+// Main App Component
+const ToyLandApp = () => {
+    const { cartCount, addToCart } = useCart(); // Destructure only what's needed here
+    const { toggleWishlist, isInWishlist } = useWishlist();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+    return (
+        <div className="font-friendly bg-gradient-to-br from-sky-pastel/20 to-mint-pastel/20 min-h-screen">
+            <Navigation cartCount={cartCount} />
+            <HomePage
+                onAddToCart={addToCart}
+                onToggleWishlist={toggleWishlist}
+                isInWishlist={isInWishlist}
+            />
+            <ShopPage
+                onAddToCart={addToCart}
+                onToggleWishlist={toggleWishlist}
+                isInWishlist={isInWishlist}
+            />
+            <CategoriesPage />
+            <AboutPage />
+            <BlogPage />
+            <ContactPage />
+            <FAQPage />
+            <Footer />
+        </div>
+    );
+};
 
-export default App;
+export default ToyLandApp;

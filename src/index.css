@@ -3,126 +3,62 @@
 @tailwind utilities;
 
 /* Playful toy store design system - all colors must be HSL */
+@keyframes bounce-gentle {
 
-@layer base {
-  :root {
-    /* Playful pastel color system */
-    --background: 45 100% 98%;
-    --foreground: 220 20% 25%;
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 20% 25%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 25%;
-
-    /* Sky blue primary */
-    --primary: 200 70% 65%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 200 80% 80%;
-
-    /* Baby pink secondary */
-    --secondary: 330 50% 85%;
-    --secondary-foreground: 220 20% 25%;
-
-    /* Mint green muted */
-    --muted: 150 40% 85%;
-    --muted-foreground: 220 15% 45%;
-
-    /* Sunshine yellow accent */
-    --accent: 45 85% 75%;
-    --accent-foreground: 220 20% 25%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 200 30% 90%;
-    --input: 200 30% 95%;
-    --ring: 200 70% 65%;
-
-    --radius: 1rem;
-
-    /* Custom design tokens for magical playground */
-    --gradient-rainbow: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--secondary)));
-    --gradient-soft: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
-    --shadow-soft: 0 8px 32px hsl(var(--primary) / 0.1);
-    --shadow-playful: 0 4px 16px hsl(var(--accent) / 0.3);
-    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 220 20% 8%;
-    --foreground: 45 100% 95%;
-
-    --card: 220 20% 10%;
-    --card-foreground: 45 100% 95%;
-
-    --popover: 220 20% 10%;
-    --popover-foreground: 45 100% 95%;
-
-    --primary: 200 70% 65%;
-    --primary-foreground: 220 20% 8%;
-
-    --secondary: 330 30% 25%;
-    --secondary-foreground: 45 100% 95%;
-
-    --muted: 150 20% 20%;
-    --muted-foreground: 220 15% 65%;
-
-    --accent: 45 85% 55%;
-    --accent-foreground: 220 20% 8%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 220 20% 15%;
-    --input: 220 20% 15%;
-    --ring: 200 70% 65%;
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+@keyframes float {
 
-  body {
-    @apply bg-background text-foreground font-sans;
-  }
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
-@layer utilities {
-  .playful-shadow {
-    box-shadow: var(--shadow-playful);
-  }
-  
-  .soft-shadow {
-    box-shadow: var(--shadow-soft);
-  }
-  
-  .bounce-hover {
-    transition: var(--transition-bounce);
-  }
-  
-  .bounce-hover:hover {
-    transform: scale(1.05) translateY(-2px);
-  }
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+}
+
+.bounce-gentle {
+    animation: bounce-gentle 2s infinite;
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.wiggle:hover {
+    animation: wiggle 0.5s ease-in-out;
+}
+
+.toy-shadow {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #87CEEB 0%, #FFB6C1 25%, #FFEB9C 50%, #98FB98 75%, #E6E6FA 100%);
 }
